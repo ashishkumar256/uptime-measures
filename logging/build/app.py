@@ -2,8 +2,10 @@ from flask import Flask, request, abort
 import time
 import os
 from werkzeug.serving import WSGIRequestHandler
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 @app.route("/")
 def home():
