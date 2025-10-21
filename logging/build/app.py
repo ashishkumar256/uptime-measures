@@ -1,6 +1,5 @@
 from flask import Flask, request, abort
-import time
-import os
+import os, time, ctypes
 from werkzeug.serving import WSGIRequestHandler
 from prometheus_flask_exporter import PrometheusMetrics
 
@@ -30,6 +29,13 @@ def home():
 @app.route("/health")
 def health_check():
     return "OK", 200
+
+@app.route("/restart")
+def restart():
+    print("⚠️ Forcing segmentation fault to restart process...")
+    ctypes.string_at(0) 
+    return "This will never execute", 200
+
 
 # Custom request handler to suppress logs for kube-probe health checks
 class QuietHealthProbeHandler(WSGIRequestHandler):
