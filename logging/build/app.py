@@ -171,14 +171,14 @@ def home():
         abort(500, description="An internal error was forced due to a mismatch with the specified mode. Available modes: \"\", \"delay\", \"crash\", \"zero_div\"")
 
 @app.route("/readiness-health")
-def health_check():
+def readiness_health():
     if startup_checks_passed:
         return "OK", 200
     else:
         return "Startup checks failed", 503
 
 @app.route("/liveness-health")
-def health_check():
+def liveness_health():
     return "OK", 200
     
 @app.route("/restart")
