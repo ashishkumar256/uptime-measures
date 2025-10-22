@@ -1,3 +1,8 @@
 flask==3.1.2
 prometheus-flask-exporter==0.23.2
 redis==6.4.0
+requests==2.32.5
+psycopg2-binary==2.9.11
+mysql-connector-python==9.5.0
+boto3==1.40.56
+elasticsearch==9.1.1
