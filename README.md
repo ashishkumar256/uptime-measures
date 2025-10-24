@@ -12,7 +12,7 @@ data:
     {
       "database_checks": [
         {
-          "name": "PostgreSQL-Main",
+          "name": "ps_main",
           "type": "postgres",
           "host": "postgres-svc",
           "port": 5432,
@@ -21,7 +21,7 @@ data:
           "dbname": "mydb"
         },
         {
-          "name": "MySQL-UserDB",
+          "name": "mysql_userdb",
           "type": "mysql",
           "host": "mysql-svc",
           "port": 3306,
@@ -32,7 +32,7 @@ data:
       ],
       "caching_checks": [
         {
-          "name": "Redis-Cache",
+          "name": "redis_cache",
           "type": "redis",
           "host": "redis-svc",
           "port": 6379
@@ -40,14 +40,14 @@ data:
       ],
       "search_checks": [
         {
-          "name": "Elasticsearch-Cluster",
+          "name": "es_cluster",
           "type": "elasticsearch",
           "url": "http://elasticsearch-svc:9200"
         }
       ],
       "storage_checks": [
         {
-          "name": "S3-AssetsBucket",
+          "name": "s3_assetsbucket",
           "type": "s3",
           "bucket_name": "my-prod-assets",
           "region": "us-east-1"
@@ -55,13 +55,13 @@ data:
       ],
       "vendors_endpoints": [
         {
-          "name": "GitHub.com-Public",
+          "name": "gh_com_public",
           "type": "http_get",
           "url": "https://github.com",
           "timeout": 5
         },
         {
-          "name": "Sentry.io-Public",
+          "name": "sentry_io_public",
           "type": "http_get",
           "url": "https://sentry.io",
           "timeout": 5
