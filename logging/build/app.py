@@ -9,9 +9,16 @@ metrics = PrometheusMetrics(app)
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
 
-# Set short timeout to simulate failure
-r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, socket_timeout=1)
-
+try:
+    r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, socket_timeout=1)
+    # Attempt a simple command to confirm connection immediately
+    r.ping()
+    print(f"✅ Successfully connected to Redis at {REDIS_HOST}:{REDIS_PORT}")
+except redis.exceptions.ConnectionError as e:
+    print(f"❌ Could not connect to Redis at {REDIS_HOST}:{REDIS_PORT}. Redis-dependent routes will fail.")
+    print(f"Error: {e}")
+    r = None
+    
 @app.route("/")
 def home():
     mode = request.args.get("mode", "")
